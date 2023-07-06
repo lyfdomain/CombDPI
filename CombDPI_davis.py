@@ -217,7 +217,6 @@ for f in range(10):
     print("the AP score is:", aps)
     ap.append(aps)
 
-print(auc, "\n", ap)
-print(sum(auc) / 10, sum(ap) / 10)
+print("the average Area Under the PRCurve is:",sum(auc) / 10, "\n", "the average Area Under the PRCurve is:", sum(ap) / 10)
 
 

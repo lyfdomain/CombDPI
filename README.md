@@ -8,7 +8,7 @@ to reproduce our results:
 3. Run CombDPI_davis.py (CombDPI_drugbank.py) to predict and evaluate our prediction results.
 
 # Noteworthy
-The similarity matrices package in the drugbank folder needs to be extracted into the drugbank folder
+The similarity matrices package in the dataset/drugbank folder needs to be extracted into the dataset/drugbank folder
 
 # Contacts
 If you have any questions, please email Li Yanfei (lyfinf@163.com)

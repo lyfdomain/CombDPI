@@ -67,7 +67,7 @@ def dis_colsimm(dd):
 index_1 = np.loadtxt("./dataset/davis/corssval/index_1.txt")
 index_0 = np.loadtxt("./dataset/davis/corssval/index_0.txt")
 index = np.hstack((index_1, index_0))
-A_real=np.loadtxt("./dataset/davis/DPI_drugbank.txt")  #载入药物疾病数据
+A_real=np.loadtxt("./dataset/davis/DPI_davis.txt")  #载入药物疾病数据
 
 SR = np.loadtxt("./dataset/davis/SR.txt")
 SP = np.loadtxt("./dataset/davis/SP.txt")

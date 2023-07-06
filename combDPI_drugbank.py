@@ -83,7 +83,7 @@ lam=10000
 
 for f in range(10):
 
-    A = np.loadtxt("./corssval/DTI"+str(f)+".txt")
+    A = np.loadtxt("./dataset/drugbank/corssval/DTI"+str(f)+".txt")
 
     dr_simdti  = cosine_similarity(A,A)
     pre_simdti = cosine_similarity(A.T, A.T)

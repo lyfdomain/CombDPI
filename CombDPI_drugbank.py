@@ -64,8 +64,8 @@ def dis_colsimm(dd):
     return mm
 
 
-index_1 = np.loadtxt("./dataset/drugbank/corssval/index_1.txt")
-index_0 = np.loadtxt("./dataset/drugbank/corssval/index_0.txt")
+index_1 = np.loadtxt("./dataset/drugbank/crossval/index_1.txt")
+index_0 = np.loadtxt("./dataset/drugbank/crossval/index_0.txt")
 index = np.hstack((index_1, index_0))
 A_real=np.loadtxt("./dataset/drugbank/DPI_drugbank.txt")  #载入药物疾病数据
 
@@ -83,7 +83,7 @@ lam=10000
 
 for f in range(10):
 
-    A = np.loadtxt("./dataset/drugbank/corssval/DTI"+str(f)+".txt")
+    A = np.loadtxt("./dataset/drugbank/crossval/DTI"+str(f)+".txt")
 
     dr_simdti  = cosine_similarity(A,A)
     pre_simdti = cosine_similarity(A.T, A.T)
@@ -131,7 +131,6 @@ for f in range(10):
     idx0 = []
     idx1 = []
 
-    print(index_0[10:])
     idx=[i1 for i2 in index_1[0:f] for i1 in i2]+[i1 for i2 in index_1[f+1:] for i1 in i2]
     print(len(idx))
 
@@ -213,6 +212,4 @@ for f in range(10):
     print("the AP score is:", aps)
     ap.append(aps)
 
-
-print(auc,"\n",ap)
-print(sum(auc)/10,sum(ap)/10)
+print("the average Area Under the PRCurve is:", sum(auc) / 10, "\n", "the average Area Under the PRCurve is:", sum(ap) / 10)

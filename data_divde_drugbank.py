@@ -4,7 +4,7 @@ from tqdm import trange
 
 
 fold=10
-dr_pre=np.loadtxt('./dataset/drugbank/DPI_davis.txt')
+dr_pre=np.loadtxt('./dataset/drugbank/DPI_drugbank.txt')
 simdr=np.loadtxt('./dataset/drugbank/SR.txt')
 simpre=np.loadtxt('./dataset/drugbank/SP.txt')
 

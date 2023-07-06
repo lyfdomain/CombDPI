@@ -64,8 +64,8 @@ def dis_colsimm(dd):
     return mm
 
 
-index_1 = np.loadtxt("./dataset/davis/corssval/index_1.txt")
-index_0 = np.loadtxt("./dataset/davis/corssval/index_0.txt")
+index_1 = np.loadtxt("./dataset/davis/crossval/index_1.txt")
+index_0 = np.loadtxt("./dataset/davis/crossval/index_0.txt")
 index = np.hstack((index_1, index_0))
 A_real=np.loadtxt("./dataset/davis/DPI_davis.txt")  #载入药物疾病数据
 
@@ -85,7 +85,7 @@ lam=10000
 
 for f in range(10):
 
-    A = np.loadtxt("./dataset/davis/corssval/DTI"+str(f)+".txt")
+    A = np.loadtxt("./dataset/davis/crossval/DTI"+str(f)+".txt")
 
     dr_simdti  = cosine_similarity(A,A)
     pre_simdti = cosine_similarity(A.T, A.T)

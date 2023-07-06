@@ -20,7 +20,7 @@ class IKNN:
         return (indexes, values)
 
 
-def pruning(K, drug_mat, target_mat, eta):
+def screening(K, drug_mat, target_mat, eta):
     m = len(drug_mat)
     n = len(target_mat)
     sr = np.zeros((m, m))
@@ -91,8 +91,8 @@ for f in range(10):
     pre_simdti = cosine_similarity(A.T, A.T)
 
 
-    SR_1,SP_1=pruning(KN, SR, SP, eta)
-    SR_2,SP_2=pruning(KN, dr_simdti , pre_simdti, eta)
+    SR_1,SP_1=screening(KN, SR, SP, eta)
+    SR_2,SP_2=screening(KN, dr_simdti , pre_simdti, eta)
     print(SR_1.shape,SP_1.shape)
 
     SR_1=drug_rowsimm(SR_1)

@@ -60,15 +60,17 @@ for f in range(10):
     pre_simdti = cosine_similarity(A.T, A.T)
 
 
-    SR_1,SP_1=screening(KN, SR, SP, eta)
-    SR_2,SP_2=screening(KN, dr_simdti , pre_simdti, eta)
+    SR_1 = reconstruct(SR)
+    SP_1= reconstruct(SP)
+    SR_2 = reconstruct(dr_simdti)
+    SP_2=reconstruct(pre_simdti)
     print(SR_1.shape,SP_1.shape)
 
-    SR_1=drug_rowsimm(SR_1)
-    SP_1=dis_colsimm(SP_1)
+    SR_1=drug_rowsimm(SR_1*SR)
+    SP_1=dis_colsimm(SP_1*SP).T
 
-    SR_2=drug_rowsimm(SR_2)
-    SP_2=dis_colsimm(SP_2)
+    SR_2=drug_rowsimm(SR_2*SR)
+    SP_2=dis_colsimm(SP_2*SP).T
 
     SR=drug_rowsimm(SR)
     SP=dis_colsimm(SP)

@@ -68,10 +68,10 @@ for f in range(10):
     print(SR_1.shape,SP_1.shape)
 
     SR_1=drug_rowsimm(SR_1*SR)
-    SP_1=dis_colsimm(SP_1*SP)
+    SP_1=dis_colsimm(SP_1*SP).T
 
     SR_2=drug_rowsimm(SR_2*SR)
-    SP_2=dis_colsimm(SP_2*SP)
+    SP_2=dis_colsimm(SP_2*SP).T
 
     SR=drug_rowsimm(SR)
     SP=dis_colsimm(SP)

@@ -2,50 +2,19 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import sklearn.metrics
 from sklearn.metrics import *
+import copy
 
 prenum=442
 
-class IKNN:
-    def __init__(self, k) -> None:
-        self._k = k
-
-    def fit(self, _X):
-        self.X = _X.copy()
-        return self
-
-    def neighbors(self, i) -> np.ndarray:
-        drugs_sim = self.X[i]
-        values = np.sort(drugs_sim)[::-1][1:self._k + 1]
-        indexes = np.argsort(drugs_sim)[::-1][1:self._k + 1]
-        return (indexes, values)
-
-
-def screening(K, drug_mat, target_mat, eta):
-    m = len(drug_mat)
-    n = len(target_mat)
-    sr = np.zeros((m, m))
-    sp = np.zeros((n, n))
-
-    iknn = IKNN(K)
-
-    iknn.fit(drug_mat)
-    for d in range(m):
-        (indexes, values) = iknn.neighbors(d)
-        z = np.sum(values)
-        if z == 0:
-            continue
-        for i in range(K):
-            sr[d, indexes[i]] = (eta ** i) * values[i]
-
-    iknn.fit(target_mat)
-    for t in range(n):
-        (indexes, values) = iknn.neighbors(t)
-        z = np.sum(values)
-        if z == 0:
-            continue
-        for i in range(K):
-            sp[indexes[i], t] = (eta ** i) * values[i]
-    return sr, sp
+def reconstruct(S):
+    xx=len(S)
+    SS=copy.deepcopy(S)
+    sorted_mol = (SS).argsort(axis=1).argsort(axis=1)
+    np.fill_diagonal(sorted_drug, 0)
+    sorted_mol=(xx-1)*np.ones((xx,xx))-sorted_mol
+    sorted_mol[sorted_mol == 0] = 1
+    sorted_mol = 1/((sorted_mol))
+    return sorted_mol
 
 def drug_rowsimm(dd):
     mm = np.zeros(dd.shape)

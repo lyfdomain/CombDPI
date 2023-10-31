@@ -2,50 +2,22 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 import sklearn.metrics
 from sklearn.metrics import *
+import copy
 
 prenum=1996
 
-class IKNN:
-    def __init__(self, k) -> None:
-        self._k = k
 
-    def fit(self, _X):
-        self.X = _X.copy()
-        return self
-
-    def neighbors(self, i) -> np.ndarray:
-        drugs_sim = self.X[i]
-        values = np.sort(drugs_sim)[::-1][1:self._k + 1]
-        indexes = np.argsort(drugs_sim)[::-1][1:self._k + 1]
-        return (indexes, values)
+def reconstruct(S):
+    xx=len(S)
+    SS=copy.deepcopy(S)
+    sorted_mol = (SS).argsort( axis=1).argsort(axis=1)
+    np.fill_diagonal(sorted_drug, 0)
+    sorted_mol=(xx-1)*np.ones((xx,xx))-sorted_drug
+    sorted_mol[sorted_mol == 0] = 1
+    sorted_mol = 1/((sorted_mol))
+    return sorted_mol
 
 
-def screening(K, drug_mat, target_mat, eta):
-    m = len(drug_mat)
-    n = len(target_mat)
-    sr = np.zeros((m, m))
-    sp = np.zeros((n, n))
-
-    iknn = IKNN(K)
-
-    iknn.fit(drug_mat)
-    for d in range(m):
-        (indexes, values) = iknn.neighbors(d)
-        z = np.sum(values)
-        if z == 0:
-            continue
-        for i in range(K):
-            sr[d, indexes[i]] = (eta ** i) * values[i]
-
-    iknn.fit(target_mat)
-    for t in range(n):
-        (indexes, values) = iknn.neighbors(t)
-        z = np.sum(values)
-        if z == 0:
-            continue
-        for i in range(K):
-            sp[indexes[i], t] = (eta ** i) * values[i]
-    return sr, sp
 
 def drug_rowsimm(dd):
     mm = np.zeros(dd.shape)
@@ -89,15 +61,17 @@ for f in range(10):
     pre_simdti = cosine_similarity(A.T, A.T)
 
 
-    SR_1,SP_1=screening(KN, SR, SP, 0.7)
-    SR_2,SP_2=screening(KN, dr_simdti, pre_simdti, 0.7)
+    SR_1 = reconstruct(SR)
+    SP_1= reconstruct(SP)
+    SR_2 = reconstruct(dr_simdti)
+    SP_2=reconstruct(pre_simdti)
     print(SR_1.shape,SP_1.shape)
 
-    SR_1=drug_rowsimm(SR_1)
-    SP_1=dis_colsimm(SP_1)
+    SR_1=drug_rowsimm(SR_1*SR)
+    SP_1=dis_colsimm(SP_1*SP)
 
-    SR_2=drug_rowsimm(SR_2)
-    SP_2=dis_colsimm(SP_2)
+    SR_2=drug_rowsimm(SR_2*SR)
+    SP_2=dis_colsimm(SP_2*SP)
 
     SR=drug_rowsimm(SR)
     SP=dis_colsimm(SP)

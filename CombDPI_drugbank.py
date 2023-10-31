@@ -10,9 +10,9 @@ prenum=1996
 def reconstruct(S):
     xx=len(S)
     SS=copy.deepcopy(S)
-    sorted_mol = (SS).argsort( axis=1).argsort(axis=1)
+    sorted_mol = (SS).argsort(axis=1).argsort(axis=1)
     np.fill_diagonal(sorted_drug, 0)
-    sorted_mol=(xx-1)*np.ones((xx,xx))-sorted_drug
+    sorted_mol=(xx-1)*np.ones((xx,xx))-sorted_mol
     sorted_mol[sorted_mol == 0] = 1
     sorted_mol = 1/((sorted_mol))
     return sorted_mol

@@ -1,5 +1,5 @@
 # CombDPI
-CombDPI: Combinatorial Optimization Prediction Model of Drug Repositioning Based on Network-Level Information
+Predicting drug-protein interactions based on similarity reconstruction and adaptive combination algorithm
 
 # Quick Start
 to reproduce our results:

@@ -186,4 +186,4 @@ for f in range(10):
     print("the AP score is:", aps)
     ap.append(aps)
 
-print("the average Area Under the ROCurve is:", sum(auc) / 10, "\n", "the Average Precision_score:", sum(ap) / 10)
+print("the average Area Under the ROCurve is:", sum(auc) / 10, "\n", "the Average Precision score:", sum(ap) / 10)

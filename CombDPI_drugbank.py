@@ -48,8 +48,6 @@ auc=[]
 ap=[]
 jieguo=[]
 
-KN=20
-eta=0.7
 lam=10000
 
 

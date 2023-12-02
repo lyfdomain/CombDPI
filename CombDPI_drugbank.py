@@ -179,11 +179,11 @@ for f in range(10):
 
     fpr, tpr, thresholds = sklearn.metrics.roc_curve(ee, ff)
     area = sklearn.metrics.auc(fpr, tpr)
-    print("the Area Under the PRCurve is:", area)
+    print("the Area Under the ROCurve is:", area)
     auc.append(area)
 
     aps = average_precision_score(ee, ff)
     print("the AP score is:", aps)
     ap.append(aps)
 
-print("the average Area Under the PRCurve is:", sum(auc) / 10, "\n", "the average Area Under the PRCurve is:", sum(ap) / 10)
+print("the average Area Under the ROCurve is:", sum(auc) / 10, "\n", "the Average Precision_score:", sum(ap) / 10)

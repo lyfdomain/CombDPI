@@ -65,7 +65,7 @@ for f in range(10):
     SP_1= reconstruct(SP)
     SR_2 = reconstruct(dr_simdti)
     SP_2=reconstruct(pre_simdti)
-    print(SR_1.shape,SP_1.shape)
+    # print(SR_1.shape,SP_1.shape)
 
     SR_1=drug_rowsimm(SR_1*SR)
     SP_1=dis_colsimm(SP_1*SP).T
@@ -106,7 +106,7 @@ for f in range(10):
     idx1 = []
 
     idx=[i1 for i2 in index_1[0:f] for i1 in i2]+[i1 for i2 in index_1[f+1:] for i1 in i2]
-    print(len(idx))
+    # print(len(idx))
 
     for i in range(len(idx)):
         d=int(idx[i]/prenum)
@@ -138,10 +138,10 @@ for f in range(10):
         score_8.append(mat_8[idx1[i][0],idx0[i][1]])
         score_true.append(mat_real[idx0[i][0],idx0[i][1]])
         score_true.append(mat_real[idx1[i][0],idx0[i][1]])
-    print(len(score_1),len(idx1),mat_1[idx0[0][0],idx0[0][1]])
+    # print(len(score_1),len(idx1),mat_1[idx0[0][0],idx0[0][1]])
 
     matrix_X=np.mat([score_1,score_2,score_3,score_4,score_5,score_6,score_7,score_8]).T
-    print(matrix_X.shape,np.mat(score_true).shape)
+    # print(matrix_X.shape,np.mat(score_true).shape)
 
     # print((matrix_X.T @ matrix_X), np.ones((1,len(matrix_X.T))))
     alpha=(np.ones((1,len(matrix_X.T))) @ (2*matrix_X.T @ matrix_X + 2*lam*np.eye(len(matrix_X.T))).I @ (2*matrix_X.T @ np.mat(score_true).T ) -1)/(np.ones((1,len(matrix_X.T))) @ (2*matrix_X.T @ matrix_X + 2*lam*np.eye(len(matrix_X.T))).I @ (np.ones((len(matrix_X.T),1))))

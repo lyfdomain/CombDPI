@@ -47,7 +47,7 @@ auc=[]
 ap=[]
 jieguo=[]
 
-lam=10000
+lam=1000
 
 
 for f in range(10):
